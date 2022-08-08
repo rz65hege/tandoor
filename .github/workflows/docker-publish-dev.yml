@@ -6,8 +6,8 @@ on:
       - '*/*'
       - '!master'
 jobs:
-  build:
-    if: github.repository_owner == 'TandoorRecipes'
+  build
+    if: github.repository_owner == 'rz65hege'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
