@@ -158,6 +158,8 @@ def recipe_view(request, pk, share=None):
                                           space=request.space).exists():
                 ViewLog.objects.create(recipe=recipe, created_by=request.user, space=request.space)
 
+        recipe['predictions'] = "100"
+
         return render(request, 'recipe_view.html',
                       {'recipe': recipe, 'comments': comments, 'comment_form': comment_form, 'share': share, })
 

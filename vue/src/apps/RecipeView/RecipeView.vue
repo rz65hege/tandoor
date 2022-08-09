@@ -39,7 +39,7 @@
                       </div>
                       <div class="my-auto mr-1">
                           <span class="text-primary"><b>{{ $t("Predictions") }}</b></span><br/>
-                          {{ recipe.working_time }} {{ $t("min") }}
+                          {{ recipe.predictions }} {{ $t("min") }}
                       </div>
                   </div>
                 </div>
