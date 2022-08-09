@@ -32,22 +32,22 @@
             <hr/>
             <div class="row align-items-center">
 
-                <div class="col col-md-3">
+                <div class="col col-md-2">
                   <div class="d-flex">
                       <div class="my-auto mr-1">
-                          <i class="fas fa-fw fa-user-clock fa-2x text-primary"></i>
+                          <i class="fas fa-fw fa-eye fa-2x text-primary"></i>
                       </div>
                       <div class="my-auto mr-1">
-                          <span class="text-primary"><b>{{ $t("Preparation") }}</b></span><br/>
+                          <span class="text-primary"><b>{{ $t("Predictions") }}</b></span><br/>
                           {{ recipe.working_time }} {{ $t("min") }}
                       </div>
                   </div>
                 </div>
 
-                <div class="col col-md-3">
+                <div class="col col-md-2">
                     <div class="d-flex">
                         <div class="my-auto mr-1">
-                            <i class="fas fa-fw fa-eercast fa-2x text-primary"></i>
+                            <i class="fas fa-fw fa-user-clock fa-2x text-primary"></i>
                         </div>
                         <div class="my-auto mr-1">
                             <span class="text-primary"><b>{{ $t("Preparation") }}</b></span><br/>
