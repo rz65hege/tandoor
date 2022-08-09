@@ -38,8 +38,8 @@
                           <i class="fas fa-fw fa-eye fa-2x text-primary"></i>
                       </div>
                       <div class="my-auto mr-1">
-                          <span class="text-primary"><b>{{ $t("Predictions") }}</b></span><br/>
-                          {{ recipe.predictions }} {{ $t("min") }}
+                          <span class="text-primary"><b>{{ $t("Prediction") }}</b></span><br/>
+                          {{ $t("about") }} {{ prediction.working_time }} {{ $t("min") }}
                       </div>
                   </div>
                 </div>
