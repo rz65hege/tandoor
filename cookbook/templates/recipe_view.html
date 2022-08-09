@@ -13,8 +13,15 @@
     <div class="card">
       <div class="card-body">
         <div class="card-title">
-          {% trans 'User experience says that you will need ' %}{{ prediction.time }}{% trans 'min for cooking' %}
-        </div> 
+          {% trans 'User experience says that you will need ' %}
+          <span class="text-primary">
+            {{ prediction.time }}
+          </span>
+          {% trans ' min for cooking' %}
+        </div>
+        <div class="card-body">
+          {{ prediction.ingredients }}
+        </div>
       </div>
     </div>
 
