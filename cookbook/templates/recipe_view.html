@@ -11,10 +11,10 @@
     {% recipe_rating recipe request.user as rating %}
 
     <div class="card">
-      <div class="card_body">
-        <small class="card-title">
-          PLACEHOLDER FOR PREDICTIONS
-        </small>
+      <div class="card-body">
+        <div class="card-title">
+          {% trans 'User experience says that you'll need ' %}{{ prediction.time }}{% trans 'min for cooking' %}
+        </div> class="card-title">
       </div>
     </div>
 
