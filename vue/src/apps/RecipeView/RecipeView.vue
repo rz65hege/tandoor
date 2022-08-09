@@ -31,7 +31,6 @@
 
             <hr/>
             <div class="row align-items-center">
-
                 <div class="col col-md-3">
                     <div class="d-flex">
                         <div class="my-auto mr-1">
@@ -157,15 +156,11 @@
 import Vue from "vue"
 import {BootstrapVue} from "bootstrap-vue"
 import "bootstrap-vue/dist/bootstrap-vue.css"
-
 import {apiLoadRecipe} from "@/utils/api"
-
 import RecipeContextMenu from "@/components/RecipeContextMenu"
 import {ResolveUrlMixin, ToastMixin} from "@/utils/utils"
-
 import PdfViewer from "@/components/PdfViewer"
 import ImageViewer from "@/components/ImageViewer"
-
 import moment from "moment"
 import LoadingSpinner from "@/components/LoadingSpinner"
 import AddRecipeToBook from "@/components/Modals/AddRecipeToBook"
@@ -177,11 +172,8 @@ import KeywordsComponent from "@/components/KeywordsComponent"
 import NutritionComponent from "@/components/NutritionComponent"
 import RecipeSwitcher from "@/components/Buttons/RecipeSwitcher"
 import CustomInputSpinButton from "@/components/CustomInputSpinButton"
-
 Vue.prototype.moment = moment
-
 Vue.use(BootstrapVue)
-
 export default {
     name: "RecipeView",
     mixins: [ResolveUrlMixin, ToastMixin],
@@ -260,7 +252,6 @@ export default {
                         this.wake_lock = null
                     });
             }
-
             document.removeEventListener('visibilitychange', this.visibilityChange)
         },
         visibilityChange: async function () {
@@ -275,23 +266,17 @@ export default {
                     for (let ingredient of step.ingredients) {
                         this.$set(ingredient, "checked", false)
                     }
-
                     step.time_offset = total_time
                     total_time += step.time
                 }
-
                 // set start time only if there are any steps with timers (otherwise no timers are rendered)
                 if (total_time > 0) {
                     this.start_time = moment().format("yyyy-MM-DDTHH:mm")
                 }
-
-
                 if (recipe.image === null) this.printReady()
-
                 this.recipe = this.rootrecipe = recipe
                 this.servings = this.servings_cache[this.rootrecipe.id] = recipe.servings
                 this.loading = false
-
                 setTimeout(() => {
                     this.handleResize()
                 }, 100)
@@ -329,7 +314,6 @@ export default {
     },
 }
 </script>
-
 <style>
 #app > div > div {
     break-inside: avoid;
