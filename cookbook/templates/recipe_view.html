@@ -18,7 +18,9 @@
             {{ prediction.time }}
           </span>
           {% trans ' min for cooking' %}
-          <button href="{% url 'feedback' %}" class="btn btn-primary">Feedback</button>
+          <form action='actionUrl' method='GET'>
+          <button type="submit" href="{% url 'feedback' %}" class="btn btn-primary">Feedback</button>
+          </form>
         </div>
       </div>
     </div>
