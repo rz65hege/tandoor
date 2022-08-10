@@ -20,7 +20,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+API_URL = os.getenv('API_URL', True)
 # Get vars from .env files
 SECRET_KEY = os.getenv('SECRET_KEY') if os.getenv('SECRET_KEY') else 'INSECURE_STANDARD_KEY_SET_IN_ENV'
 
