@@ -121,8 +121,8 @@ def recipe_view(request, pk, share=None):
         ingredients = Ingredient.objects.filter(unit=pk).values_list("food_id")
 
         food = []
-        for food_id in ingredient:
-            food.append(Food.objects.get(pk=food_id).value("name"))
+        for ingredient in ingredients:
+            food.append(Food.objects.get(pk=ingredient["food_id"]).value("name"))
 
         if not request.user.is_authenticated and not share_link_valid(recipe, share):
             messages.add_message(request, messages.ERROR,
