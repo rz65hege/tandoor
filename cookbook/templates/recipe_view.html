@@ -11,20 +11,14 @@
     {% recipe_rating recipe request.user as rating %}
 
     <div class="card">
+    <form action="{% url 'feedback' %}" method="GET" target="feedbackframe">
       <div class="card-body">
-        <div class="card-title">
+
           {% trans 'User experience says that you will need ' %}
           <span class="text-primary">
             {{ prediction.time }}
           </span>
           {% trans ' min for cooking' %}
-
-          <iframe name="feedbackframe" id="feedbackframe" style="display: none;"></iframe>
-
-          <form action="{% url 'feedback' %}" method="GET" target="feedbackframe">
-              <input type="hidden" id="ingredients" name="ingredients" value="{{ prediction.ingredients }}">
-              <button type="submit" class="btn btn-primary">Feedback</button>
-          </form>
 
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -36,24 +30,27 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Feedback</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  ...
+                  <iframe name="feedbackframe" id="feedbackframe" style="display: none;"></iframe>
+                  <input type="hidden" id="ingredients" name="ingredients" value="{{ prediction.ingredients }}">
+                  <input id="time" name="time" value="{{ prediction.time }}">
+
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="submit" class="btn btn-primary">Send</button>
                 </div>
               </div>
             </div>
           </div>
 
-        </div>
       </div>
+    </form>
     </div>
 
     <div id="app">
