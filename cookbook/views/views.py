@@ -168,12 +168,20 @@ def recipe_view(request, pk, share=None):
         schema = client.get(settings.API_URL + 'prediction/?ing=' + ','.join(food))
         prediction = {'time' : next(iter(schema.values())), 'ingredients': ''}
 
-
         return render(request, 'recipe_view.html',
                       {'recipe': recipe, 'comments': comments, 'comment_form': comment_form, 'share': share, 'prediction': prediction})
 
 def feedback(request):
-    i = 1
+    schema = AutoSchema(manual_fields=[
+    coreapi.Field(
+        "data",
+        required=True,
+        location="body",
+        description='{"items":[], "name":str}',
+        schema=coreschema.Object()
+        ),
+    ])
+
     return HttpResponseRedirect('/')
 
 
