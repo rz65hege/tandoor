@@ -175,7 +175,7 @@ def feedback(request):
     client = coreapi.Client()
     #schema = client.get('http://127.0.0.1:8000/prediction/?ing=' + ','.join(food))
     #schema = client.get(settings.API_URL + 'feedback/?ing=' + ','.join(food))
-    schema = client.get(settings.API_URL + 'feedback/?ing=rise')
+    schema = client.get(settings.API_URL + 'feedback/?ingredients=rise,something_else&time=100')
 
     return HttpResponseRedirect('/')
 
