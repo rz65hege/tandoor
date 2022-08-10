@@ -182,7 +182,7 @@ def feedback(request):
     headers = {'Content-Type': 'application/json'}
 
     ingredients = ','.join(request.GET.get('ingredients'))
-    payload = {'ingredients': 'somevalue'}
+    payload = {'ingredients': ingredients}
 
 
     x = requests.post(url, json = payload, headers=headers)
