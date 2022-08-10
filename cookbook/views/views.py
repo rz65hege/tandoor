@@ -164,10 +164,8 @@ def recipe_view(request, pk, share=None):
                 ViewLog.objects.create(recipe=recipe, created_by=request.user, space=request.space)
 
         client = coreapi.Client()
-        url = 'http://127.0.0.1:8000/prediction/?ing=' + ','.join(food)
-        schema = client.get(url)
-        prediction = {'time' : next(iter(schema.values())), 'ingredients': url}
-        #prediction = {'time' : "100", 'ingredients': url}
+        schema = client.get('http://127.0.0.1:8000/prediction/?ing=' + ','.join(food))
+        prediction = {'time' : next(iter(schema.values())), 'ingredients': ''}
 
 
         return render(request, 'recipe_view.html',
