@@ -120,6 +120,10 @@ def recipe_view(request, pk, share=None):
         recipe = get_object_or_404(Recipe, pk=pk)
         ingredients = Ingredient.objects.filter(unit=pk).values_list("food_id")
 
+        food = []
+        for food_id in ingredient:
+            food.append(Food.objects.get(pk=food_id).value("name"))
+
         if not request.user.is_authenticated and not share_link_valid(recipe, share):
             messages.add_message(request, messages.ERROR,
                                  _('You do not have the required permissions to view this page!'))
@@ -158,7 +162,7 @@ def recipe_view(request, pk, share=None):
                                           space=request.space).exists():
                 ViewLog.objects.create(recipe=recipe, created_by=request.user, space=request.space)
 
-        prediction = {'time' : pk, 'ingredients': ingredients}
+        prediction = {'time' : pk, 'ingredients': food}
 
         return render(request, 'recipe_view.html',
                       {'recipe': recipe, 'comments': comments, 'comment_form': comment_form, 'share': share, 'prediction': prediction})
