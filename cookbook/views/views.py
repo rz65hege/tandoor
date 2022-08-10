@@ -179,11 +179,11 @@ def recipe_view(request, pk, share=None):
 
 def feedback(request):
     url = settings.API_URL + 'feedback/'
-
+    headers = {'Content-Type': 'application/json'}
     payload = {'somekey': 'somevalue'}
 
 
-    x = requests.post(url, json = payload)
+    x = requests.post(url, json = payload, headers=headers)
 
     # if request.method == "POST":
     #     attempt_num = 0  # keep track of how many times we've retried
