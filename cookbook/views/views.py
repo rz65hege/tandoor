@@ -165,7 +165,7 @@ def recipe_view(request, pk, share=None):
 
         client = coreapi.Client()
         schema = client.get('http://127.0.0.1:8000/prediction/?ing=rise,something_else')
-        prediction = {'time' : schema.items(), 'ingredients': food}
+        prediction = {'time' : schema.items()[0], 'ingredients': food}
 
         return render(request, 'recipe_view.html',
                       {'recipe': recipe, 'comments': comments, 'comment_form': comment_form, 'share': share, 'prediction': prediction})
