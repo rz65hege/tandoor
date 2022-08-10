@@ -1,6 +1,7 @@
 import os
 import re
 import uuid
+import coreapi
 from datetime import datetime
 from uuid import UUID
 
@@ -162,7 +163,9 @@ def recipe_view(request, pk, share=None):
                                           space=request.space).exists():
                 ViewLog.objects.create(recipe=recipe, created_by=request.user, space=request.space)
 
-        prediction = {'time' : pk, 'ingredients': food}
+        client = coreapi.Client()
+        schema = client.get('http://127.0.0.1:8000/prediction/?ing=rise,something_else')
+        prediction = {'time' : pk, 'ingredients': schema}
 
         return render(request, 'recipe_view.html',
                       {'recipe': recipe, 'comments': comments, 'comment_form': comment_form, 'share': share, 'prediction': prediction})
