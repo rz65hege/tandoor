@@ -183,7 +183,7 @@ def feedback(request):
     payload = {'somekey': 'somevalue'}
 
 
-    x = request.POST(url, json = payload)
+    x = requests.POST(url, json = payload)
 
     # if request.method == "POST":
     #     attempt_num = 0  # keep track of how many times we've retried
