@@ -1,3 +1,23 @@
+## How to use
+
+To use Tandoor with external API for predictions add variable API_URL to environment file. The test expected interface for API is in the file fastapi.py.
+
+To run fastapi.py use the follow command:
+```
+uvicorn main:app --reload
+```
+
+To check GET request:
+```
+curl -H 'Accept: application/json; indent=4'  http://127.0.0.1:8000/prediction/?ing=rise,something_else
+```
+
+To check POST request:
+```
+curl -X POST -H "Content-Type: application/json" "http://127.0.0.1:8000/feedback/" -d '{"ingredients":"rise,something_else", "time": 100}'
+```
+
+
 <h1 align="center">
   <br>
   <a href="https://tandoor.dev"><img src="https://github.com/vabene1111/recipes/raw/develop/docs/logo_color.svg" height="256px" width="256px"></a>
@@ -39,13 +59,13 @@
 
 - 🔍 Powerful & customizable **search** with fulltext support and [TrigramSimilarity](https://docs.djangoproject.com/en/3.0/ref/contrib/postgres/search/#trigram-similarity)
 - 🏷️ Create and search for **tags**, assign them in batch to all files matching certain filters
-- ↔️ Quickly merge and rename ingredients, tags and units 
+- ↔️ Quickly merge and rename ingredients, tags and units
 - 📥️ **Import recipes** from thousands of websites supporting [ld+json or microdata](https://schema.org/Recipe)
 - ➗ Support for **fractions** or decimals
 - 🐳 Easy setup with **Docker** and included examples for **Kubernetes**, **Unraid** and **Synology**
 - 🎨 Customize your interface with **themes**
 - 📦 **Sync** files with Dropbox and Nextcloud
-  
+
 ## All the must haves
 
 - 📱Optimized for use on **mobile** devices
@@ -54,7 +74,7 @@
 - ➕ Many more like recipe scaling, image compression, printing views and supermarkets
 
 This application is meant for people with a collection of recipes they want to share with family and friends or simply
-store them in a nicely organized way. A basic permission system exists but this application is not meant to be run as 
+store them in a nicely organized way. A basic permission system exists but this application is not meant to be run as
 a public page.
 
 ## Docs
@@ -62,7 +82,7 @@ a public page.
 Documentation can be found [here](https://docs.tandoor.dev/).
 
 ## Support our work
-Tandoor is developed by volunteers in their free time just because its fun. That said earning 
+Tandoor is developed by volunteers in their free time just because its fun. That said earning
 some money with the project allows us to spend more time on it and thus make improvements we otherwise couldn't.
 Because of that there are several ways you can support us
 
@@ -98,7 +118,7 @@ Beginning with version 0.10.0 the code in this repository is licensed under the 
 [common clause](https://commonsclause.com/) selling exception. See [LICENSE.md](https://github.com/vabene1111/recipes/blob/develop/LICENSE.md) for details.
 
 > NOTE: There appears to be a whole range of legal issues with licensing anything else then the standard completely open licenses.
-> I am in the process of getting some professional legal advice to sort out these issues. 
+> I am in the process of getting some professional legal advice to sort out these issues.
 > Please also see [Issue 238](https://github.com/vabene1111/recipes/issues/238) for some discussion and **reasoning** regarding the topic.
 
 **Reasoning**  
