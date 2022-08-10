@@ -181,8 +181,8 @@ def feedback(request):
     url = settings.API_URL + 'feedback/'
     headers = {'Content-Type': 'application/json'}
 
-    payload = request.GET.get('ingredients')
-    #payload = {'somekey': 'somevalue'}
+    ingredients = ','.join(request.GET.get('ingredients'))
+    payload = {'ingredients': 'somevalue'}
 
 
     x = requests.post(url, json = payload, headers=headers)
