@@ -178,23 +178,28 @@ def recipe_view(request, pk, share=None):
                       {'recipe': recipe, 'comments': comments, 'comment_form': comment_form, 'share': share, 'prediction': prediction})
 
 def feedback(request):
-    if request.method == "POST":
-        attempt_num = 0  # keep track of how many times we've retried
-        while attempt_num < MAX_RETRIES:
-            url = settings.API_URL + 'feedback/'
-            #payload = {'Token':'My_Secret_Token','product':request.POST.get("options"),'price':request.POST.get("price")}
-            payload = {'Token':'My_Secret_Token','ingredients': "rise,something_else",'time':'100'}
-            r = requests.post(url, data = payload)
-            if r.status_code == 200:
-                data = r.json()
-                return Response(data, status=status.HTTP_200_OK)
-            else:
-                attempt_num += 1
-                # You can probably use a logger to log the error here
-                time.sleep(5)  # Wait for 5 seconds before re-trying
-        return Response({"error": "Request failed"}, status=r.status_code)
-    else:
-        return Response({"error": "Method not allowed"}, status=status.HTTP_400_BAD_REQUEST)
+    url = settings.API_URL + 'feedback/'
+    payload = {'ingredients': "rise,something_else",'time':'100'}
+
+    x = request.post(url, json = payload)
+    
+    # if request.method == "POST":
+    #     attempt_num = 0  # keep track of how many times we've retried
+    #     while attempt_num < MAX_RETRIES:
+    #         url = settings.API_URL + 'feedback/'
+    #         #payload = {'Token':'My_Secret_Token','product':request.POST.get("options"),'price':request.POST.get("price")}
+    #         payload = {'Token':'My_Secret_Token','ingredients': "rise,something_else",'time':'100'}
+    #         r = requests.post(url, data = payload)
+    #         if r.status_code == 200:
+    #             data = r.json()
+    #             return Response(data, status=status.HTTP_200_OK)
+    #         else:
+    #             attempt_num += 1
+    #             # You can probably use a logger to log the error here
+    #             time.sleep(5)  # Wait for 5 seconds before re-trying
+    #     return Response({"error": "Request failed"}, status=r.status_code)
+    # else:
+    #     return Response({"error": "Method not allowed"}, status=status.HTTP_400_BAD_REQUEST)
 
 
     ##schema = client.get('http://127.0.0.1:8000/prediction/?ing=' + ','.join(food))
