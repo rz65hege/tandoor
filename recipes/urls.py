@@ -31,7 +31,6 @@ urlpatterns = [
         JavaScriptCatalog.as_view(domain='django'),
         name='javascript-catalog'
     ),
-    path('feedback/', cookbook.views.feedback, name="feedback"),
 ]
 
 if settings.ENABLE_METRICS:
