@@ -172,6 +172,10 @@ def recipe_view(request, pk, share=None):
         return render(request, 'recipe_view.html',
                       {'recipe': recipe, 'comments': comments, 'comment_form': comment_form, 'share': share, 'prediction': prediction})
 
+def feedback(request):
+    i = 1
+    return HttpResponseRedirect('/')
+
 
 @group_required('user')
 def books(request):
