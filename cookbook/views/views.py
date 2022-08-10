@@ -118,7 +118,8 @@ def no_perm(request):
 def recipe_view(request, pk, share=None):
     with scopes_disabled():
         recipe = get_object_or_404(Recipe, pk=pk)
-        ingredients = Ingredient.objects.filter(unit=pk)
+        ingredients = Ingredient.objects.filter(unit=pk).get_field("food_id")
+
 
         if not request.user.is_authenticated and not share_link_valid(recipe, share):
             messages.add_message(request, messages.ERROR,
