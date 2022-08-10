@@ -181,8 +181,8 @@ def feedback(request):
     url = settings.API_URL + 'feedback/'
     payload = {'ingredients': "rise,something_else",'time':'100'}
 
-    x = request.post(url, json = payload)
-    
+    x = request.POST(url, json = payload)
+
     # if request.method == "POST":
     #     attempt_num = 0  # keep track of how many times we've retried
     #     while attempt_num < MAX_RETRIES:
