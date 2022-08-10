@@ -5,6 +5,8 @@ import coreapi
 from datetime import datetime
 from uuid import UUID
 
+from rest_framework.schemas import AutoSchema
+
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
