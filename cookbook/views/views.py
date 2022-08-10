@@ -25,7 +25,7 @@ from cookbook.forms import (CommentForm, Recipe, SearchPreferenceForm, ShoppingP
                             UserCreateForm, UserNameForm, UserPreference, UserPreferenceForm)
 from cookbook.helper.permission_helper import group_required, has_group_permission, share_link_valid, switch_user_active_space
 from cookbook.models import (Comment, CookLog, InviteLink, SearchFields, SearchPreference, ShareLink,
-                             Space, ViewLog, UserSpace, Ingredient)
+                             Space, ViewLog, UserSpace, Ingredient, Food)
 from cookbook.tables import (CookLogTable, ViewLogTable)
 from recipes.version import BUILD_REF, VERSION_NUMBER
 
@@ -118,8 +118,8 @@ def no_perm(request):
 def recipe_view(request, pk, share=None):
     with scopes_disabled():
         recipe = get_object_or_404(Recipe, pk=pk)
-        ingredients = Ingredient.objects.filter(unit=pk).get_field("food_id")
-
+        ingredients = Ingredient.objects.filter(unit=pk).value("food_id")
+        
 
         if not request.user.is_authenticated and not share_link_valid(recipe, share):
             messages.add_message(request, messages.ERROR,
