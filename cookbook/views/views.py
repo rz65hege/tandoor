@@ -172,7 +172,7 @@ def recipe_view(request, pk, share=None):
         client = coreapi.Client()
         #schema = client.get('http://127.0.0.1:8000/prediction/?ing=' + ','.join(food))
         schema = client.get(settings.API_URL + 'prediction/?ing=' + ','.join(food))
-        prediction = {'time' : next(iter(schema.values())), 'ingredients': ''}
+        prediction = {'time' : next(iter(schema.values())), 'ingredients': food}
 
         return render(request, 'recipe_view.html',
                       {'recipe': recipe, 'comments': comments, 'comment_form': comment_form, 'share': share, 'prediction': prediction})
@@ -180,7 +180,9 @@ def recipe_view(request, pk, share=None):
 def feedback(request):
     url = settings.API_URL + 'feedback/'
     headers = {'Content-Type': 'application/json'}
-    payload = {'somekey': 'somevalue'}
+
+    payload = request.GET.get('ingredients')
+    #payload = {'somekey': 'somevalue'}
 
 
     x = requests.post(url, json = payload, headers=headers)

@@ -21,8 +21,9 @@
 
           <iframe name="feedbackframe" id="feedbackframe" style="display: none;"></iframe>
 
-          <form action='{% url 'feedback' %}/?ingredient=rise,something_else' method='GET' target="feedbackframe">
-          <button type="submit" class="btn btn-primary">Feedback</button>
+          <form action='{% url 'feedback' %}' method='GET' target="feedbackframe">
+              <input type="hidden" id="ingredients" name="ingredients" value="{{ prediction.ingredients }}">
+              <button type="submit" class="btn btn-primary">Feedback</button>
           </form>
 
         </div>
