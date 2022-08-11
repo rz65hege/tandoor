@@ -126,7 +126,12 @@ def get_prediction(pk):
     #ingredients = Ingredient.objects.filter(unit=pk).values_list("food_id")
     ingredients = Ingredient.objects.filter(unit=pk)
 
-    food = []
+    food = [
+    {
+        "name": "test",
+        "amoutn": "test"
+    }
+    ]
     for ingredient in ingredients:
         food.append({
             "name": getattr(Food.objects.get(pk=getattr(ingredient, "food_id")), "name"),
