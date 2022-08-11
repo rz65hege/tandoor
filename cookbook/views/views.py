@@ -137,8 +137,8 @@ def get_prediction(pk):
     url = settings.API_URL + 'prediction/'
     headers = {'Content-Type': 'application/json'}
 
-    recipe = { "recipe_text": "string", "ingredients": None}
-    recipe["ingredients"].append(food)
+    recipe = { "recipe_text": "string", "ingredients": []}
+    recipe["ingredients"].extend(food)
 
     x = requests.post(url, json = recipe, headers=headers)
 
