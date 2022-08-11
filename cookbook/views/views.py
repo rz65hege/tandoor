@@ -122,15 +122,6 @@ def no_perm(request):
         return HttpResponseRedirect(reverse('account_login') + '?next=' + request.GET.get('next', '/search/'))
     return render(request, 'no_perm_info.html')
 
-def get_POST(req):
-    return '{}\n{}\r\n{}\r\n\r\n{}'.format(
-        '-----------START-----------',
-        req.method + ' ' + req.url,
-        '\r\n'.join('{}: {}'.format(k, v) for k, v in req.headers.items()),
-        req.body,
-    )
-
-
 def get_prediction(pk):
     #ingredients = Ingredient.objects.filter(unit=pk).values_list("food_id")
     ingredients = Ingredient.objects.filter(unit=pk)
@@ -148,10 +139,7 @@ def get_prediction(pk):
 
     x = requests.post(url, json = food, headers=headers)
 
-    req = requests.Request('POST',url,headers=headers,data=food)
-    prepared = req.prepare()
-
-    return get_POST(prepared)
+    return food
 
 def feedback(request):
     url = settings.API_URL + 'feedback/'

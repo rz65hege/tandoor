@@ -57,3 +57,6 @@ async def predict_cooking_time(prediction_request: PredictionRequest):
         "resting_time": 2,
         "preparation_time": 5
     }
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
