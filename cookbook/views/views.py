@@ -139,11 +139,8 @@ def get_prediction(pk):
 
     x = requests.post(url, json = food, headers=headers)
 
-    recipe =
-    {
-        "recipe_text": "string",
-        "ingredients": food
-    }
+    recipe = { "recipe_text": "string"}
+    recipe["ingredients"].extend(food)
 
     return food
 
