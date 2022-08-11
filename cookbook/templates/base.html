@@ -420,6 +420,14 @@
             console.warn('service worker not in navigator');
         }
     });
+});
+</script>
+<script type="text/javascript">
+  $('#button').submit(function(e) {
+    e.preventDefault();
+    $('#feedbackModal').modal('toggle'); //or  $('#IDModal').modal('hide');
+    return false;
+  }
 </script>
 
 <style>
