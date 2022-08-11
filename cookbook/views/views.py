@@ -148,7 +148,10 @@ def get_prediction(pk):
 
     x = requests.post(url, json = food, headers=headers)
 
-    return get_POST(x.prepare())
+    req = requests.Request('POST',url,headers=headers,data=food)
+    prepared = req.prepare()
+
+    return get_POST(prepared
 
 def feedback(request):
     url = settings.API_URL + 'feedback/'
