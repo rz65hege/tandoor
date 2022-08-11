@@ -139,6 +139,12 @@ def get_prediction(pk):
 
     x = requests.post(url, json = food, headers=headers)
 
+    recipe =
+    {
+        "recipe_text": "string",
+        "ingredients": food
+    }
+
     return food
 
 def feedback(request):
