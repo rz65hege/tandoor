@@ -131,7 +131,7 @@ def get_prediction(pk):
         food.append({
             "name": getattr(Food.objects.get(pk=getattr(ingredient, "food_id")), "name"),
             "unit": "",
-            "amoutn": int(getattr(ingredient, "amount"))
+            "amount": int(getattr(ingredient, "amount"))
         })
 
     url = settings.API_URL + 'prediction/'
