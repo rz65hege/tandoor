@@ -126,17 +126,20 @@ def get_prediction(pk):
     #ingredients = Ingredient.objects.filter(unit=pk).values_list("food_id")
     ingredients = Ingredient.objects.filter(unit=pk)
 
-    food = [
-    {
-        "name": "test",
-        "amoutn": "test"
-    }
-    ]
+    food = []
     for ingredient in ingredients:
         food.append({
             "name": getattr(Food.objects.get(pk=getattr(ingredient, "food_id")), "name"),
+            "unit": "",
             "amoutn": getattr(ingredient, "amount")
         })
+
+    url = settings.API_URL + 'prediction/'
+    headers = {'Content-Type': 'application/json'}
+
+    payload = food
+
+    x = requests.post(url, json = payload, headers=headers)
 
     return food
 
