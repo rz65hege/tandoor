@@ -137,12 +137,12 @@ def get_prediction(pk):
     url = settings.API_URL + 'prediction/'
     headers = {'Content-Type': 'application/json'}
 
-    x = requests.post(url, json = food, headers=headers)
-
     recipe = { "recipe_text": "string", "ingredients": []}
     recipe["ingredients"].append(food)
 
-    return food
+    x = requests.post(url, json = recipe, headers=headers)
+
+    return recipe
 
 def feedback(request):
     url = settings.API_URL + 'feedback/'
