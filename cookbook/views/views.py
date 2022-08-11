@@ -137,11 +137,9 @@ def get_prediction(pk):
     url = settings.API_URL + 'prediction/'
     headers = {'Content-Type': 'application/json'}
 
-    payload = food
+    x = requests.post(url, json = food, headers=headers)
 
-    x = requests.post(url, json = payload, headers=headers)
-
-    return food
+    return x
 
 def feedback(request):
     url = settings.API_URL + 'feedback/'
