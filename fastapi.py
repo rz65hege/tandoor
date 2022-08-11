@@ -9,6 +9,24 @@ class Feedback(BaseModel):
     ingredients: Union[str, None] = None
     time: int = 0
 
+class Ingredient(BaseModel):
+    name: str
+    unit: str
+    amount: float
+
+class PredictionRequest(BaseModel):
+    recipe_text: str
+    ingredients: List[Ingredient]
+
+@router.post("/prediction/")
+async def predict_cooking_time(prediction_request: PredictionRequest):
+    return {
+         "cooking_time": random.randint(5,50),
+         "resting_time": random.randint(5,50),
+         "preparation_time": random.randint(5,50)
+    }
+
+
 @app.get("/")
 def read_root():
     return {"Welcome to predictions system"}
@@ -17,13 +35,13 @@ def read_root():
 def read_item(ing: Union[str, None]):
     return {"time": random.randint(5,50)}
 
-@app.get("/prediction/")
-def read_item(ing: Union[str, None]):
-    return {
-        "cooking_time": random.randint(5,50),
-        "resting_time": random.randint(5,50),
-        "preparation_time": random.randint(5,50)
-    }
+# @app.post("/prediction/")
+# def read_item(ing: Union[str, None]):
+#     return {
+#         "cooking_time": random.randint(5,50),
+#         "resting_time": random.randint(5,50),
+#         "preparation_time": random.randint(5,50)
+#     }
 
 @app.post("/feedback/")
 async def create_feedback(feedback: Feedback = None):
