@@ -123,12 +123,13 @@ def no_perm(request):
     return render(request, 'no_perm_info.html')
 
 def get_prediction(pk):
-    ingredients = Ingredient.objects.filter(unit=pk).values_list("food_id")
+    #ingredients = Ingredient.objects.filter(unit=pk).values_list("food_id")
+    ingredients = Ingredient.objects.filter(unit=pk)
 
     food = []
     for ingredient in ingredients:
         food.append({
-            "name": getattr(Food.objects.get(pk=ingredient[0]), "name"),
+            "name": getattr(Food.objects.get(pk=getattr(ingredient, "food_id")), "name"),
             "amoutn": getattr(ingredient, "amount")
         })
 
