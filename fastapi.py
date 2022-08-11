@@ -20,7 +20,7 @@ class PredictionRequest(BaseModel):
     recipe_text: str
     ingredients: List[Ingredient]
 
-@router.post("/prediction/")
+@app.post("/prediction/")
 async def predict_cooking_time(prediction_request: PredictionRequest):
     return {
          "cooking_time": random.randint(5,50),
