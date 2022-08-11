@@ -424,10 +424,11 @@
 </script>
 <script>
   $('#submit_btn').click(function() {
-if ( ! $('form input:invalid' ).length ) {
-  $('#feedbackModal').modal('hide');}, 4000);
-
+  if ( ! $('form input:invalid' ).length ) {
+    setTimeout(function() {$('#feedbackModal').modal('hide');}, 4000);
+  }
 });
+
 </script>
 
 <style>
