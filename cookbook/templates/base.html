@@ -422,7 +422,13 @@
     });
 });
 </script>
-
+<script type="text/javascript">
+  $('#submit_btn').submit(function(e) {
+    e.preventDefault();
+    $('#feedbackModal').modal('toggle'); //or  $('#IDModal').modal('hide');
+    return false;
+  }
+</script>
 
 <style>
     @media screen and (max-width: 1000px) {
