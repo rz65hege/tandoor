@@ -209,7 +209,7 @@ def recipe_view(request, pk, share=None):
 
         result = get_prediction(pk)
         #prediction = {'time' : next(iter(schema.values())), 'message': result}
-        prediction = {'time' : "result['cooking_time']", 'message': result}
+        prediction = {'time' : result['cooking_time'], 'message': result}
 
         return render(request, 'recipe_view.html',
                       {'recipe': recipe, 'comments': comments, 'comment_form': comment_form, 'share': share, 'prediction': prediction})
