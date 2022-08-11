@@ -122,7 +122,7 @@ def no_perm(request):
         return HttpResponseRedirect(reverse('account_login') + '?next=' + request.GET.get('next', '/search/'))
     return render(request, 'no_perm_info.html')
 
-def prediction(pk):
+def get_prediction(pk):
     ingredients = Ingredient.objects.filter(unit=pk).values_list("food_id")
 
     food = []
@@ -197,7 +197,7 @@ def recipe_view(request, pk, share=None):
         #schema = client.get('http://127.0.0.1:8000/prediction/?ing=' + ','.join(food))
         schema = client.get(settings.API_URL + 'prediction/?ing=' + ','.join(food))
 
-        food = prediction(pk)
+        food = get_prediction(pk)
         prediction = {'time' : next(iter(schema.values())), 'ingredients': food}
 
         return render(request, 'recipe_view.html',
