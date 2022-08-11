@@ -139,7 +139,7 @@ def get_prediction(pk):
 
     x = requests.post(url, json = food, headers=headers)
 
-    return x
+    return food
 
 def feedback(request):
     url = settings.API_URL + 'feedback/'
