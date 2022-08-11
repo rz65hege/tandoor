@@ -128,8 +128,8 @@ def get_prediction(pk):
     food = []
     for ingredient in ingredients:
         food.append({
-            name: getattr(Food.objects.get(pk=ingredient[0]), "name"),
-            amoutn: getattr(ingredient, "amount")
+            "name": getattr(Food.objects.get(pk=ingredient[0]), "name"),
+            "amoutn": getattr(ingredient, "amount")
         })
 
     return food
