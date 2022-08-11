@@ -422,14 +422,12 @@
     });
 });
 </script>
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('#button').submit(function(e) {
-      e.preventDefault();
-      $('#feedbackModal').modal('toggle'); //or  $('#IDModal').modal('hide');
-      return false;
-    };
-  });
+<script>
+  $('#submit_btn').click(function() {
+if ( ! $('form input:invalid' ).length ) {
+  $('#feedbackModal').modal('hide');}, 4000);
+
+});
 </script>
 
 <style>
