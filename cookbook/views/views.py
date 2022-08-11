@@ -188,7 +188,7 @@ def prediction(pk):
         {
             name: getattr(Food.objects.get(pk=ingredient[0]), "name"),
             amoutn: getattr(ingredient, "amount")
-        )
+        }
 
     return food
 
