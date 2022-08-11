@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import random
 from typing import List
-
+import uvicorn
 
 app = FastAPI()
 
