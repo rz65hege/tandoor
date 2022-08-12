@@ -24,10 +24,38 @@
                   <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     {% trans 'User experience says that you will need ' %}{{ prediction.time }} {% trans ' min for cooking' %}
                   </button>
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#feedbackModal">
+                      Feedback
+                  </button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="feedbackModalLabel">Feedback</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <iframe name="feedbackframe" id="feedbackframe" style="display: none;"></iframe>
+                          <input type="hidden" id="ingredients" name="ingredients" value="{{ prediction.ingredients }}">
+                          <input id="time" name="time" value="{{ prediction.time }}">
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button id="submit_btn" type="submit" class="btn btn-primary">Send</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </h5>
               </div>
 
-              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
                   more information
                 </div>
@@ -37,35 +65,8 @@
 
 
 
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#feedbackModal">
-              Feedback
-          </button>
 
-          <!-- Modal -->
-          <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="feedbackModalLabel">Feedback</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <iframe name="feedbackframe" id="feedbackframe" style="display: none;"></iframe>
-                  <input type="hidden" id="ingredients" name="ingredients" value="{{ prediction.ingredients }}">
-                  <input id="time" name="time" value="{{ prediction.time }}">
 
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button id="submit_btn" type="submit" class="btn btn-primary">Send</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          {{ prediction.message }}
       </div>
     </form>
     </div>
