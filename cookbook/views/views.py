@@ -167,11 +167,15 @@ def feedback(request):
 
     payload = {
         "recipe_text": getattr(recipe[0], "description"),
-        "predicted_times": {},
+        "predicted_times": {
+            "cooking_time": 10,
+            "resting_time": 10,
+            "preparation_time": 10
+        },
         "actual_times": {
-            "cooking_time": time,
-            "resting_time": time,
-            "preparation_time": time
+            "cooking_time": 10,
+            "resting_time": 10,
+            "preparation_time": 10
         },
         "ingredients": []
     }
