@@ -10,8 +10,11 @@ import pandas as pd
 app = FastAPI()
 
 class Feedback(BaseModel):
-    ingredients: Union[str, None] = None
-    time: int = 0
+    recipe_text: str
+    time: str
+    ingredients: List[Ingredient]
+    #ingredients: Union[str, None] = None
+    #time: int = 0
 
 class Ingredient(BaseModel):
     name: str
