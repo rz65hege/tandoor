@@ -43,7 +43,9 @@
                           <iframe name="feedbackframe" id="feedbackframe" style="display: none;"></iframe>
                           <input type="hidden" id="ingredients" name="ingredients" value="{{ prediction.ingredients }}">
                           <input type="hidden" id="recipe_pk" name="recipe_pk" value="{{ prediction.pk }}">
-                          <input id="user_time" name="user_time" value="{{ prediction.time }}">
+                          Cooking time: <input id="cooking_time" name="cooking_time" value="">
+                          Resting time: <input id="resting_time" name="resting_time" value="">
+                          Preparation time: <input id="preparation_time" name="preparation_time" value="">
 
                         </div>
                         <div class="modal-footer">

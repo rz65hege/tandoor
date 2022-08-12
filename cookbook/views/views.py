@@ -149,7 +149,9 @@ def feedback(request):
     headers = {'Content-Type': 'application/json'}
 
     time = "None"
-    time = request.GET.get('user_time')
+    cooking_time = request.GET.get('cooking_time')
+    resting_time = request.GET.get('resting_time')
+    preparation_time = request.GET.get('preparation_time')
     #ingredients = ','.join(request.GET.get('ingredients'))
     #pk = request.GET.get('pk')
     pk = request.GET.get('recipe_pk')
@@ -168,14 +170,14 @@ def feedback(request):
     payload = {
         "recipe_text": getattr(recipe[0], "description"),
         "predicted_times": {
-            "cooking_time": int(time),
-            "resting_time": int(time),
-            "preparation_time": int(time)
+            "cooking_time": int(cooking_time),
+            "resting_time": int(resting_time),
+            "preparation_time": int(preparation_time)
         },
         "actual_times": {
-            "cooking_time": int(time),
-            "resting_time": int(time),
-            "preparation_time": int(time)
+            "cooking_time": int(cooking_time),
+            "resting_time": int(resting_time),
+            "preparation_time": int(preparation_time)
         },
         "ingredients": []
     }
