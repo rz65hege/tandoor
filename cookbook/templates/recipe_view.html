@@ -15,8 +15,8 @@
       <div class="card-body">
 
           {% trans 'User experience says that you will need ' %}
-          <span class="text-primary">
-            {{ prediction.time }}
+          <span class="text-primary"  data-toggle="tooltip" data-placement="bottom" title="{{ prediction.time }}">
+            more information
           </span>
           {% trans ' min for cooking' %}
 
