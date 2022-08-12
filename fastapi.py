@@ -21,13 +21,18 @@ class Ingredient(BaseModel):
 #     #ingredients: Union[str, None] = None
 #     #time: int = 0
 
+class CookingTimes(BaseModel):
+    cooking_time: int
+    resting_time: int
+    preparation_time: int
+
 class PredictionRequest(BaseModel):
     recipe_text: str
     ingredients: List[Ingredient]
 
 class Feedback(PredictionRequest):
-    predicted_times: str
-    actual_times: str
+    predicted_times: CookingTimes
+    actual_times: CookingTimes
 
 @app.post("/prediction/")
 async def predict_cooking_time(prediction_request: PredictionRequest):
