@@ -170,8 +170,10 @@ def feedback(request):
         "ingredients": []
     }
     # payload["ingredients"].extend(food)
+    payload = {'ingredients': ingredients}
 
     response = requests.post(url, json = payload, headers=headers)
+
 
     return HttpResponseRedirect('/')
 
