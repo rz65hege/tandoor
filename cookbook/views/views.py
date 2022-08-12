@@ -149,7 +149,7 @@ def feedback(request):
     headers = {'Content-Type': 'application/json'}
 
     time = "None"
-    time = request.GET.get('time')
+    time = request.GET.get('user_time')
     #ingredients = ','.join(request.GET.get('ingredients'))
     #pk = request.GET.get('pk')
     pk = request.GET.get('recipe_pk')
@@ -167,7 +167,7 @@ def feedback(request):
 
     payload = {
         "recipe_text": getattr(recipe[0], "description"),
-        "time": "None",
+        "time": time,
         "ingredients": []
     }
     payload["ingredients"].extend(food)
