@@ -164,7 +164,8 @@ def feedback(request):
     #     })
 
     payload = {
-        "recipe_text": getattr(recipe[0], "description"),
+        #"recipe_text": getattr(recipe[0], "description"),
+        "recipe_text": "description",
         "time": time,
         "ingredients": []
     }
