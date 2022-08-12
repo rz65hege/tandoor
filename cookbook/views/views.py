@@ -148,29 +148,7 @@ def feedback(request):
     url = settings.API_URL + 'feedback/'
     headers = {'Content-Type': 'application/json'}
 
-    time = "None"
-    #ingredients = ','.join(request.GET.get('ingredients'))
-    # pk = request.GET.get('pk')
-    time = request.GET.get('time')
-    #
-    # ingredients = Ingredient.objects.filter(unit=pk)
-    # recipe = Recipe.objects.filter(pk=pk)
-    #
-    # food = []
-    # for ingredient in ingredients:
-    #     food.append({
-    #         "name": getattr(Food.objects.get(pk=getattr(ingredient, "food_id")), "name"),
-    #         "unit": "",
-    #         "amount": int(getattr(ingredient, "amount"))
-    #     })
 
-    payload = {
-        #"recipe_text": getattr(recipe[0], "description"),
-        "recipe_text": "description",
-        "time": "time",
-        "ingredients": []
-    }
-    # payload["ingredients"].extend(food)
     payload = {'ingredients': 'ingredients'}
 
     response = requests.post(url, json = payload, headers=headers)
