@@ -163,9 +163,6 @@ def feedback(request):
             "amount": int(getattr(ingredient, "amount"))
         })
 
-    url = settings.API_URL + 'prediction/'
-    headers = {'Content-Type': 'application/json'}
-
     payload = {
         "recipe_text": getattr(recipe[0], "description"),
         "time": time,
