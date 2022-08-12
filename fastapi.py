@@ -9,17 +9,17 @@ import pandas as pd
 
 app = FastAPI()
 
+class Ingredient(BaseModel):
+    name: str
+    unit: str
+    amount: float
+
 class Feedback(BaseModel):
     recipe_text: str
     time: str
     ingredients: List[Ingredient]
     #ingredients: Union[str, None] = None
     #time: int = 0
-
-class Ingredient(BaseModel):
-    name: str
-    unit: str
-    amount: float
 
 class PredictionRequest(BaseModel):
     recipe_text: str
