@@ -24,20 +24,25 @@ class PredictionRequest(BaseModel):
 
 @app.post("/prediction/")
 async def predict_cooking_time(prediction_request: PredictionRequest):
-    df = pd.DataFrame(prediction_request)
-    df.to_csv('csvfile.csv', encoding='utf-8', index=False)
-    
     return {
          "cooking_time": random.randint(5,50),
          "resting_time": random.randint(5,50),
          "preparation_time": random.randint(5,50)
     }
 
+@app.post("/feedback/")
+async def create_feedback(feedback: Feedback = None):
+    df = pd.DataFrame(prediction_request)
+    df.to_csv('csvfile.csv', encoding='utf-8', index=False)
+    return feedback
 
 @app.get("/")
 def read_root():
     return {"Welcome to predictions system"}
 
+
+
+### DEBUG
 @app.get("/prediction_lite/")
 def read_item(ing: Union[str, None]):
     return {"time": random.randint(5,50)}
@@ -49,10 +54,6 @@ def read_item(ing: Union[str, None]):
 #         "resting_time": random.randint(5,50),
 #         "preparation_time": random.randint(5,50)
 #     }
-
-@app.post("/feedback/")
-async def create_feedback(feedback: Feedback = None):
-    return feedback
 
 
 @app.get("/prediction/")
