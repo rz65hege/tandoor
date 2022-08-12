@@ -150,7 +150,9 @@ def feedback(request):
 
     time = "None"
     time = request.GET.get('time')
-    pk = request.GET.get('recipe_pk')
+    #ingredients = ','.join(request.GET.get('ingredients'))
+    #pk = request.GET.get('pk')
+    pk = request.GET.get('pk')
 
     ingredients = Ingredient.objects.filter(unit=pk)
     recipe = Recipe.objects.filter(pk=pk)
@@ -165,7 +167,7 @@ def feedback(request):
 
     payload = {
         "recipe_text": getattr(recipe[0], "description"),
-        "time": time,
+        "time": "None",
         "ingredients": []
     }
     payload["ingredients"].extend(food)
