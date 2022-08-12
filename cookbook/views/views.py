@@ -165,10 +165,11 @@ def feedback(request):
             "amount": int(getattr(ingredient, "amount"))
         })
 
-    url = settings.API_URL + 'prediction/'
-    headers = {'Content-Type': 'application/json'}
-
-    payload = { "recipe_text": getattr(recipe[0], "description"), "ingredients": []}
+    payload = {
+        "recipe_text": getattr(recipe[0], "description"),
+        "time": "None",
+        "ingredients": []
+    }
     payload["ingredients"].extend(food)
 
     response = requests.post(url, json = payload, headers=headers)
