@@ -4,6 +4,8 @@ from pydantic import BaseModel
 import random
 from typing import List
 import uvicorn
+import pandas as pd
+
 
 app = FastAPI()
 
@@ -22,6 +24,9 @@ class PredictionRequest(BaseModel):
 
 @app.post("/prediction/")
 async def predict_cooking_time(prediction_request: PredictionRequest):
+    df = pd.DataFrame(prediction_request)
+    df.to_csv('csvfile.csv', encoding='utf-8', index=False)
+    
     return {
          "cooking_time": random.randint(5,50),
          "resting_time": random.randint(5,50),
