@@ -32,7 +32,7 @@ from cookbook.forms import (CommentForm, Recipe, SearchPreferenceForm, ShoppingP
                             UserCreateForm, UserNameForm, UserPreference, UserPreferenceForm)
 from cookbook.helper.permission_helper import group_required, has_group_permission, share_link_valid, switch_user_active_space
 from cookbook.models import (Comment, CookLog, InviteLink, SearchFields, SearchPreference, ShareLink,
-                             Space, ViewLog, UserSpace, Ingredient, Food)
+                             Space, ViewLog, UserSpace, Ingredient, Food, Recipe)
 from cookbook.tables import (CookLogTable, ViewLogTable)
 from recipes.version import BUILD_REF, VERSION_NUMBER
 
@@ -123,8 +123,8 @@ def no_perm(request):
     return render(request, 'no_perm_info.html')
 
 def get_prediction(pk):
-    #ingredients = Ingredient.objects.filter(unit=pk).values_list("food_id")
     ingredients = Ingredient.objects.filter(unit=pk)
+    recipe = Recipe.objects.filter(pk=pk)
 
     food = []
     for ingredient in ingredients:
@@ -137,10 +137,10 @@ def get_prediction(pk):
     url = settings.API_URL + 'prediction/'
     headers = {'Content-Type': 'application/json'}
 
-    recipe = { "recipe_text": "string", "ingredients": []}
-    recipe["ingredients"].extend(food)
+    payload = { "recipe_text": getattr(recipe, "description"), "ingredients": []}
+    payload["ingredients"].extend(food)
 
-    response = requests.post(url, json = recipe, headers=headers)
+    response = requests.post(url, json = payload, headers=headers)
 
     return response.json()
 
@@ -204,11 +204,9 @@ def recipe_view(request, pk, share=None):
                 ViewLog.objects.create(recipe=recipe, created_by=request.user, space=request.space)
 
         client = coreapi.Client()
-        #schema = client.get('http://127.0.0.1:8000/prediction/?ing=' + ','.join(food))
         schema = client.get(settings.API_URL + 'prediction_lite/?ing=' + ','.join(food))
 
         result = get_prediction(pk)
-        #prediction = {'time' : next(iter(schema.values())), 'message': result}
         prediction = {'time' : result['cooking_time'], 'message': result}
 
         return render(request, 'recipe_view.html',
