@@ -15,9 +15,12 @@
       <div class="card-body">
 
           {% trans 'User experience says that you will need ' %}
-          <span class="text-primary"  data-toggle="popover" data-placement="bottom" title="{{ prediction.time }}" data-content="more information">
-            {{ prediction.time }}
-          </span>
+          <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus"
+          title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">
+          {{ prediction.time }}
+          </a>
+
+          
           {% trans ' min for cooking' %}
 
           <!-- Button trigger modal -->
