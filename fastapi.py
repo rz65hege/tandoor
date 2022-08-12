@@ -33,7 +33,7 @@ async def predict_cooking_time(prediction_request: PredictionRequest):
 @app.post("/feedback/")
 async def create_feedback(feedback: Feedback = None):
     df = pd.DataFrame(feedback)
-    df.to_csv('csvfile.csv', encoding='utf-8', index=False)
+    df.to_csv('csvfile.csv', mode=‘a’, encoding='utf-8', index=False)
     return feedback
 
 @app.get("/")
