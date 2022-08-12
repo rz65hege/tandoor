@@ -14,13 +14,26 @@
     <form action="{% url 'feedback' %}" method="GET" target="feedbackframe">
       <div class="card-body">
 
-          {% trans 'User experience says that you will need ' %}
 
-          <span tabindex="0" class="" role="button" data-toggle="popover" data-trigger="focus"
-          title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">
-          {{ prediction.time }} {% trans ' min for cooking' %}
-          </span>
 
+
+          <div id="accordion">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    {% trans 'User experience says that you will need ' %}{{ prediction.time }} {% trans ' min for cooking' %}
+                  </button>
+                </h5>
+              </div>
+
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                  more information
+                </div>
+              </div>
+            </div>
+          </div>
 
 
 
