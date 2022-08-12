@@ -167,7 +167,8 @@ def feedback(request):
 
     payload = {
         "recipe_text": getattr(recipe[0], "description"),
-        "time": time,
+        "predicted_times": time,
+        "actual_times": time,
         "ingredients": []
     }
     payload["ingredients"].extend(food)

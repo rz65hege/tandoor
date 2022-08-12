@@ -14,16 +14,20 @@ class Ingredient(BaseModel):
     unit: str
     amount: float
 
-class Feedback(BaseModel):
-    recipe_text: str
-    time: str
-    ingredients: List[Ingredient]
-    #ingredients: Union[str, None] = None
-    #time: int = 0
+# class Feedback(BaseModel):
+#     recipe_text: str
+#     time: str
+#     ingredients: List[Ingredient]
+#     #ingredients: Union[str, None] = None
+#     #time: int = 0
 
 class PredictionRequest(BaseModel):
     recipe_text: str
     ingredients: List[Ingredient]
+
+class Feedback(PredictionRequest):
+    predicted_times: str
+    actual_times: str
 
 @app.post("/prediction/")
 async def predict_cooking_time(prediction_request: PredictionRequest):
