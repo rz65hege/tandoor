@@ -150,8 +150,6 @@ def feedback(request):
 
     time = "None"
     time = request.GET.get('time')
-    #ingredients = ','.join(request.GET.get('ingredients'))
-    #pk = request.GET.get('pk')
     pk = request.GET.get('recipe_pk')
 
     ingredients = Ingredient.objects.filter(unit=pk)
