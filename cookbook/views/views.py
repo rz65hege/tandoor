@@ -207,7 +207,14 @@ def recipe_view(request, pk, share=None):
         schema = client.get(settings.API_URL + 'prediction_lite/?ing=' + ','.join(food))
 
         result = get_prediction(pk)
-        prediction = {'time' : result['cooking_time'], 'message': result}
+        total_time = result['cooking_time'] + result['resting_time'] + result['preparation_time']
+        prediction = {
+                'total_time' : total_time,
+                'cooking_time' : result['cooking_time'],
+                'resting_time' : result['resting_time'],
+                'preparation_time' : result['preparation_time'], 
+                'message': result
+            }
 
         return render(request, 'recipe_view.html',
                       {'recipe': recipe, 'comments': comments, 'comment_form': comment_form, 'share': share, 'prediction': prediction})
