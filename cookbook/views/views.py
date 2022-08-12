@@ -148,9 +148,10 @@ def feedback(request):
     url = settings.API_URL + 'feedback/'
     headers = {'Content-Type': 'application/json'}
 
+    time = "None"
     #ingredients = ','.join(request.GET.get('ingredients'))
     # pk = request.GET.get('pk')
-    # time = request.GET.get('time')
+    time = request.GET.get('time')
     #
     # ingredients = Ingredient.objects.filter(unit=pk)
     # recipe = Recipe.objects.filter(pk=pk)
@@ -175,7 +176,7 @@ def feedback(request):
     response = requests.post(url, json = payload, headers=headers)
 
 
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect('/feedback/')
 
 
 def recipe_view(request, pk, share=None):
