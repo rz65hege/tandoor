@@ -123,7 +123,6 @@ def no_perm(request):
     return render(request, 'no_perm_info.html')
 
 def get_prediction(pk):
-    def get_prediction(pk):
     try:
         ingredients = Ingredient.objects.filter(unit=pk)
         recipe = Recipe.objects.filter(pk=pk)
