@@ -127,29 +127,29 @@ def get_prediction(pk):
              'resting_time' : "none",
              'preparation_time' : "none"
          }
-    try:
-        ingredients = Ingredient.objects.filter(unit=pk)
-        recipe = Recipe.objects.filter(pk=pk)
-
-        food = []
-        for ingredient in ingredients:
-            food.append({
-                "name": getattr(Food.objects.get(pk=getattr(ingredient, "food_id")), "name"),
-                "unit": "",
-                "amount": int(getattr(ingredient, "amount"))
-                })
-
-        url = settings.API_URL + 'prediction/'
-        headers = {'Content-Type': 'application/json'}
-
-        payload = { "recipe_text": getattr(recipe[0], "description"), "ingredients": []}
-        payload["ingredients"].extend(food)
-
-        response = requests.post(url, json = payload, headers=headers)
-
-        json_resp = response.json()
-    except:
-         return json_resp
+    # try:
+    #     ingredients = Ingredient.objects.filter(unit=pk)
+    #     recipe = Recipe.objects.filter(pk=pk)
+    #
+    #     food = []
+    #     for ingredient in ingredients:
+    #         food.append({
+    #             "name": getattr(Food.objects.get(pk=getattr(ingredient, "food_id")), "name"),
+    #             "unit": "",
+    #             "amount": int(getattr(ingredient, "amount"))
+    #             })
+    #
+    #     url = settings.API_URL + 'prediction/'
+    #     headers = {'Content-Type': 'application/json'}
+    #
+    #     payload = { "recipe_text": getattr(recipe[0], "description"), "ingredients": []}
+    #     payload["ingredients"].extend(food)
+    #
+    #     response = requests.post(url, json = payload, headers=headers)
+    #
+    #     json_resp = response.json()
+    # except:
+    #      return json_resp
     return json_resp
 
 def feedback(request):
