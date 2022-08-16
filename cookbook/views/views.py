@@ -159,12 +159,10 @@ def feedback(request):
     cooking_time = request.GET.get('cooking_time')
     resting_time = request.GET.get('resting_time')
     preparation_time = request.GET.get('preparation_time')
-    #ingredients = ','.join(request.GET.get('ingredients'))
-    #pk = request.GET.get('pk')
     pk = request.GET.get('recipe_pk')
 
     ingredients = Ingredient.objects.filter(unit=pk)
-    recipe = Recipe.objects.filter(pk=pk)
+    recipe = Recipe.objects.filter(id=pk)
 
     food = []
     for ingredient in ingredients:
