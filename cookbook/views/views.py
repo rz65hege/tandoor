@@ -127,7 +127,7 @@ def get_prediction(pk):
              'resting_time' : "none",
              'preparation_time' : "none"
          }
-    try:
+    #try:
         ingredients = Ingredient.objects.filter(unit=pk)
         recipe = Recipe.objects.filter(pk=pk)
 
@@ -148,8 +148,8 @@ def get_prediction(pk):
         response = requests.post(url, json = payload, headers=headers)
 
         json_resp = response.json()
-    except:
-         return json_resp
+    #except:
+         #return json_resp
     return json_resp
 
 def feedback(request):
