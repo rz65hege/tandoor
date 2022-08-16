@@ -1,3 +1,7 @@
+# Hinweis
+
+This is a development repository. The final version is available at [https://github.com/rz65hege/recipes](https://github.com/rz65hege/recipes) 
+
 ## How to use
 
 To use Tandoor with external API for predictions add variable API_URL to environment file. The test expected interface for API is in the file fastapi.py.
