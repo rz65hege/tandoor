@@ -249,7 +249,7 @@ def recipe_view(request, pk, share=None):
 
         result = get_prediction(pk)
 
-        if (result):
+        if (bool(result)):
             total_time = "NONE"
             prediction = {
                     'total_time' : total_time,
