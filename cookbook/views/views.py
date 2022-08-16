@@ -123,26 +123,30 @@ def no_perm(request):
     return render(request, 'no_perm_info.html')
 
 def get_prediction(pk):
-    ingredients = Ingredient.objects.filter(unit=pk)
-    recipe = Recipe.objects.filter(pk=pk)
+    def get_prediction(pk):
+    try:
+        ingredients = Ingredient.objects.filter(unit=pk)
+        recipe = Recipe.objects.filter(pk=pk)
 
-    food = []
-    for ingredient in ingredients:
-        food.append({
-            "name": getattr(Food.objects.get(pk=getattr(ingredient, "food_id")), "name"),
-            "unit": "",
-            "amount": int(getattr(ingredient, "amount"))
+        food = []
+        for ingredient in ingredients:
+                food.append({
+                "name": getattr(Food.objects.get(pk=getattr(ingredient, "food_id")), "name"),
+                "unit": "",
+                "amount": int(getattr(ingredient, "amount"))
         })
 
-    url = settings.API_URL + 'prediction/'
-    headers = {'Content-Type': 'application/json'}
+        url = settings.API_URL + 'predict_times/'
+        headers = {'Content-Type': 'application/json'}
 
-    payload = { "recipe_text": getattr(recipe[0], "description"), "ingredients": []}
-    payload["ingredients"].extend(food)
+        payload = { "recipe_text": getattr(recipe[0], "description"), "ingredients": []}
+        payload["ingredients"].extend(food)
 
-    response = requests.post(url, json = payload, headers=headers)
+        response = requests.post(url, json = payload, headers=headers)
 
-    return response.json()
+        return response.json()
+    except:
+        return {}
 
 def feedback(request):
     url = settings.API_URL + 'feedback/'
