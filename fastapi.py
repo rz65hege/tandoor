@@ -14,13 +14,6 @@ class Ingredient(BaseModel):
     unit: str
     amount: float
 
-# class Feedback(BaseModel):
-#     recipe_text: str
-#     time: str
-#     ingredients: List[Ingredient]
-#     #ingredients: Union[str, None] = None
-#     #time: int = 0
-
 class CookingTimes(BaseModel):
     cooking_time: int
     resting_time: int
@@ -53,27 +46,17 @@ def read_root():
     return {"Welcome to predictions system"}
 
 
-
 ### DEBUG
 @app.get("/prediction_lite/")
 def read_item(ing: Union[str, None]):
     return {"time": random.randint(5,50)}
 
-# @app.post("/prediction/")
-# def read_item(ing: Union[str, None]):
-#     return {
-#         "cooking_time": random.randint(5,50),
-#         "resting_time": random.randint(5,50),
-#         "preparation_time": random.randint(5,50)
-#     }
-
-
 @app.get("/prediction/")
 async def predict_cooking_time(prediction_request: PredictionRequest):
     return {
-        "cooking_time": 15,
-        "resting_time": 2,
-        "preparation_time": 5
+         "cooking_time": random.randint(5,50),
+         "resting_time": random.randint(5,50),
+         "preparation_time": random.randint(5,50)
     }
 
 if __name__ == "__main__":
