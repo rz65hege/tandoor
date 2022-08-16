@@ -129,13 +129,13 @@ def get_prediction(pk):
 
         food = []
         for ingredient in ingredients:
-                food.append({
+            food.append({
                 "name": getattr(Food.objects.get(pk=getattr(ingredient, "food_id")), "name"),
                 "unit": "",
                 "amount": int(getattr(ingredient, "amount"))
-        })
+                })
 
-        url = settings.API_URL + 'predict_times/'
+        url = settings.API_URL + 'prediction/'
         headers = {'Content-Type': 'application/json'}
 
         payload = { "recipe_text": getattr(recipe[0], "description"), "ingredients": []}
@@ -145,7 +145,11 @@ def get_prediction(pk):
 
         return response.json()
     except:
-        return {}
+        return {
+            'cooking_time' : "none",
+            'resting_time' : "none",
+            'preparation_time' : "none"
+        }
 
 def feedback(request):
     url = settings.API_URL + 'feedback/'
