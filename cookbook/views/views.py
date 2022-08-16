@@ -122,7 +122,12 @@ def no_perm(request):
     return render(request, 'no_perm_info.html')
 
 def get_prediction(pk):
-    #try:
+    json_resp = {
+             'cooking_time' : "none",
+             'resting_time' : "none",
+             'preparation_time' : "none"
+         }
+    try:
         ingredients = Ingredient.objects.filter(unit=pk)
         recipe = Recipe.objects.filter(pk=pk)
 
@@ -142,13 +147,10 @@ def get_prediction(pk):
 
         response = requests.post(url, json = payload, headers=headers)
 
-        return response.json()
-    # except:
-    #     return {
-    #         'cooking_time' : "none",
-    #         'resting_time' : "none",
-    #         'preparation_time' : "none"
-    #     }
+        json_resp = response.json()
+    except:
+         return json_resp
+    return json_resp
 
 def feedback(request):
     url = settings.API_URL + 'feedback/'
