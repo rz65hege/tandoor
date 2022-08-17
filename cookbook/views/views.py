@@ -143,8 +143,10 @@ def get_prediction(pk):
     headers = {'Content-Type': 'application/json'}
 
     #payload = { "recipe_text": getattr(recipe[0], "description", "nothing"), "ingredients": []}
-    text = getattr(recipe[0], "description", "none")
-    payload = { "recipe_text": if text is not None else "none", "ingredients": []}
+    if getattr(recipe[0], "description", "none") is not None:
+        payload = { "recipe_text": getattr(recipe[0], "description", "none"), "ingredients": []}
+    else:
+        payload = { "recipe_text": "none", "ingredients": []}
     payload["ingredients"].extend(food)
 
     response = requests.post(url, json = payload, headers=headers)
