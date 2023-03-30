@@ -37,7 +37,7 @@ jobs:
         run: yarn build
       # Build container
       - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@2.13
+        uses: elgohr/Publish-Docker-Github-Action@v5
         with:
           name: ${{ secrets.DOCKER_REPONAME }}
           username: ${{ secrets.DOCKER_USERNAME }}
